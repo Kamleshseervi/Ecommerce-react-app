@@ -1,0 +1,23 @@
+trigger:
+- main
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+steps:
+- task: NodeTool@0
+  inputs:
+    versionSpec: '18.x'
+  displayName: 'Install Node.js'
+
+- script: |
+    npm install
+    npm run build
+  displayName: 'Build the app'
+
+- task: AzureWebApp@1
+  inputs:
+    azureSubscription: '<your-service-connection>'
+    appType: 'webApp'
+    appName: '<your-app-service-name>'
+    package: '$(System.DefaultWorkingDirectory)/build'
