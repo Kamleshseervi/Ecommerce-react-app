@@ -2,7 +2,7 @@ trigger:
 - main
 
 pool:
-  vmImage: 'ubuntu-latest'
+  vmImage: ubuntu-latest
 
 steps:
 - task: NodeTool@0
@@ -17,7 +17,7 @@ steps:
 
 - task: AzureWebApp@1
   inputs:
-    azureSubscription: '<your-service-connection>'
+    azureSubscription: 'weapp-ecommerce'
     appType: 'webApp'
-    appName: '<your-app-service-name>'
+    appName: 'ecommerce365'
     package: '$(System.DefaultWorkingDirectory)/build'
